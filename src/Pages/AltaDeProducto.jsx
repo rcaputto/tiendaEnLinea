@@ -1,22 +1,21 @@
 import { useForm } from "react-hook-form";
 import { Button, Form } from "react-bootstrap";
-import { create } from "../Services/productosServices";
+import { create, upLoadFile } from "../Services/productosServices";
+import { useState } from "react";
 
 function AltaDeProducto() {
   const { register, handleSubmit } = useForm({ mode: "onChange" });
+  
+ 
 
   const onSubmit = async (data) => {
     try {
       const document = await create(data);
-      console.log(
-        "🚀 ~ file: productosAlta.jsx:19 ~ onSubmit ~ document:",
-        document
-      );
+      console.log (document)
     } catch (e) {
       console.log(e);
     }
   };
-
   return (
     <div>
       <Form onSubmit={handleSubmit(onSubmit)}>
@@ -25,30 +24,30 @@ function AltaDeProducto() {
           <Form.Control
             type="text"
             placeholder="Ingrese su nombre"
-            {...register("title")}
+            {...register("nombreProducto")}
           />
         </Form.Group>
         <Form.Group className="mb-3" controlId="formBasicNombre">
           <Form.Label>Precio</Form.Label>
           <Form.Control
-            type="number"
-            placeholder="Ingrese su precio"
-            {...register("price")}
-          />
-        </Form.Group>
-        <Form.Group className="mb-3" controlId="formBasicNombre">
-          <Form.Label>Imagen</Form.Label>
-          <Form.Control
             type="text"
-            placeholder="Ingrese su imagen"
-            {...register("thumbnail")}
+            placeholder="Ingrese descripcion"
+            {...register("descripcionProducto")}
           />
         </Form.Group>
-
         <Button variant="primary" type="submit">
           Guardar
         </Button>
       </Form>
+
+     
+      
+      
+      
+      
+      
+   
+      
     </div>
   );
 }

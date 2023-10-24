@@ -1,0 +1,14 @@
+  const handleUpLoad = async (e) =>{
+    e.preventDefault();
+    try{
+      const response = await upLoadFile(file)
+      setFileName(response)
+      console.log (response)
+    }
+    catch (e){
+      console.error(e)
+    }
+  }
+
+  const [fileName, setFileName] = useState()
+  const [file, setFile] = useState(null);
