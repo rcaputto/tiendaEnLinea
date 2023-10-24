@@ -1,4 +1,3 @@
-
 import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
 import NavDropdown from 'react-bootstrap/NavDropdown';
@@ -7,7 +6,7 @@ import { AuthContext } from "../Context/AuthContex";
 import { useContext } from "react";
 
 function NavBar({usuarioLogueado}) {
-  const {login, handleLogout} = useContext(AuthContext)
+  const {login, handleLogout, adminLogin, handleAdminLogout} = useContext(AuthContext)
   return (
     <Navbar expand="lg" className="bg-body-tertiary">
       
@@ -32,7 +31,17 @@ function NavBar({usuarioLogueado}) {
             <NavDropdown.Item > Configuración  </NavDropdown.Item>
             <NavDropdown.Item ><Nav.Link onClick={handleLogout} style={{color:'black'}}> Salir </Nav.Link></NavDropdown.Item>
             </NavDropdown>
+            
             </>}
+
+            {adminLogin &&
+              <>
+              <NavDropdown title = {usuarioLogueado} id="basic-nav-dropdown" style={{color:'white'}}>
+              <NavDropdown.Item ><Link to='alta-producto'>Carga de productos</Link> </NavDropdown.Item>
+              <NavDropdown.Item > Baja de productos  </NavDropdown.Item>
+              <NavDropdown.Item ><Nav.Link onClick={handleAdminLogout} style={{color:'black'}}> Salir </Nav.Link></NavDropdown.Item>
+              </NavDropdown>
+              </>}
             
           </Nav>
         </Navbar.Collapse>

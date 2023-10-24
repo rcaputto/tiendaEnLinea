@@ -5,7 +5,7 @@ export default function useFetchProducts () {
     
     const [productos, setProductos] = useState([]);
     const [loading, setLoading] = useState(true);
-    const [buscar, setBuscar] = useState('Ingrese su búsqueda')
+    const [buscar, setBuscar] = useState()
 
     useEffect( () => {
         const request = async () => {

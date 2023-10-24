@@ -4,6 +4,6 @@ export const RegistroMessage = {
 }
 
 export const LoginMessage = {
-    'auth/user-not-found': 'El email no se encuentra registrado',
-    'auth/wrong-password': 'Contraseña incorrecta'
+    'auth/invalid-login-credentials': 'Verifique los datos ingresados',
+    
 }

@@ -38,17 +38,24 @@ export default function Login ({setUserLogued}){
           text:`Bienvenido/a ${response?.name}`,
           link:'/'
 });
-  context.handleLogin();
-  setLoading(false);
-  setUserLogued ({name: response?.name})
+  if (response?.admin === 'admin'){
+    context.handleAdminLogin();
+    setLoading(false);
+    setUserLogued ({name: response?.name})
+  }else{
+
+    context.handleLogin();
+    setLoading(false);
+    setUserLogued ({name: response?.name})
+  }
   
 }
   catch(e){
       console.log(e);
       setAlert({
+        variant: "danger",
+        text: LoginMessage[e.code] || "Ha ocurrido un error",
         duration: 0,
-        variant:'danger', 
-        text: LoginMessage[e.code] || 'Ha ocurrido un error',
     })
       setLoading(false)
   }
