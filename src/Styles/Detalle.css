@@ -1,0 +1,16 @@
+img{
+    width: 45%;
+    height: 60vh;
+    object-fit: cover;
+    margin-right: auto;
+}
+.detalleCard{
+    margin-top: 4rem;
+    display: flex;
+    
+    
+}
+.detalle{
+    align-self: center;
+    margin: 0 15rem 0 ;
+}

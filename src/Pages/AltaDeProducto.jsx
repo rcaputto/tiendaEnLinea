@@ -1,16 +1,21 @@
 import { useForm } from "react-hook-form";
-import { Button, Form } from "react-bootstrap";
+import {  Form } from "react-bootstrap";
 import { create } from "../Services/productosServices";
 import {storage} from '../Config/firebase';
 import {getDownloadURL, ref, uploadBytes} from 'firebase/storage';
 import {v4} from 'uuid'
+import { useState } from "react";
+import AlertNavigation from "../Components/AlertNavigation";
+import ButtonWithLoading from "../Components/ButtonWithLoading";
 
 function AltaDeProducto() {
   const { register, handleSubmit, setValue } = useForm({ mode: "onChange" });
-  
+  const [alert, setAlert] = useState();
+  const [loading, setLoading] = useState(false)
 
 
   const onSubmit = async (data) => {
+    setLoading(true)
     try {
       const imagen = data.imagen [0];
       const storageRef = ref (storage, v4())
@@ -19,14 +24,30 @@ function AltaDeProducto() {
 
       const producto = {
         nombre: data.nombre,
-        descripcion: data.precio,
+        marca: data.marca,
+        precio: data.precio,
+        descripcion: data.descripcion,
+        categoria: data.categoria,
+        stock: data.stock,
         imagenURL: url,
       };
       const document = await create(producto);
       console.log (document)
 
       setValue('nombre', '');
+      setValue('marca', '');
       setValue('precio', '');
+      setValue('descripcion', '');
+      setValue('categoria', '');
+      setValue('stock', '');
+      setLoading(false)
+
+      setAlert({
+        duration: 3000,
+        variant:'success', 
+        text:'El producto ha sido creado. Aguarde y será redirigido a la página principal',
+        link:'/'
+    });
     } catch (e) {
       console.log(e);
     }
@@ -43,6 +64,16 @@ function AltaDeProducto() {
             {...register("nombre")}
           />
         </Form.Group>
+        <Form.Group className="mb-3" controlId="formBasicNombre">
+          <Form.Label>marca</Form.Label>
+          <Form.Control
+            type="text"
+            placeholder="Ingrese marca"
+            {...register("marca")}
+          />
+        </Form.Group>
+      
+         
         <Form.Group className="mb-3" controlId="formBasicNombre">
           <Form.Label>Precio</Form.Label>
           <Form.Control
@@ -68,6 +99,14 @@ function AltaDeProducto() {
           />
         </Form.Group>
         <Form.Group className="mb-3" controlId="formBasicNombre">
+          <Form.Label>Descripción</Form.Label>
+          <Form.Control
+            type="text"
+            placeholder="Ingrese una descripción del producto"
+            {...register("descripcion")}
+          />
+        </Form.Group>
+        <Form.Group className="mb-3" controlId="formBasicNombre">
           <Form.Label>Imagen</Form.Label>
           <Form.Control
             type="file"
@@ -75,9 +114,8 @@ function AltaDeProducto() {
             {...register("imagen")}
           />
         </Form.Group>
-        <Button variant="primary" type="submit">
-          Guardar
-        </Button>
+        <ButtonWithLoading loading={loading} variant="primary" type="submit" style = {{marginTop:'6px', width:'100%'}}>Guardar</ButtonWithLoading>
+        <AlertNavigation {...alert}/>
       </Form>
 
      

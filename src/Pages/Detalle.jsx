@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { getById } from '../Services/productosServices';
 import Loading from '../Components/Loading';
+import '../Styles/Detalle.css'
 
 //Component tipo funcion
 function Detalle() {
@@ -26,10 +27,17 @@ function Detalle() {
 
   return (
     <Loading loading={loading}>
-      <div className="">
+    <h1>Detalle de producto</h1>
+      <div className="detalleCard">
+      <img src = {producto.imagenURL} alt='img' />
+      <div className='detalle'>
         <h1>{producto.nombre}</h1>
-        <p>{producto.descripcion}</p>
-        {/* <p>{producto.description}</p> */}
+        <p>Marca: {producto.marca}</p>
+        <p>Descripción: {producto.descripcion}</p>
+          <p>Precio: ${producto.precio}</p>
+          <p>Categoría: {producto.categoria}</p>
+          <p>Stock: {producto.stock}</p>
+        </div>
       </div>
     </Loading>
   );
