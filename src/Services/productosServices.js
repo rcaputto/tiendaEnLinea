@@ -1,11 +1,14 @@
 import firebase from '../Config/firebase';
-import {storage} from '../Config/firebase';
-import {getDownloadURL, ref, uploadBytes} from 'firebase/storage'
-import {v4} from 'uuid'
+
 
 export async function getAll(buscar) {
   console.log(buscar);
   return await firebase.firestore().collection("productos").get();
+}
+
+export async function getById(id) {
+  //Ejemplo de GET
+  return await firebase.firestore().doc(`productos/${id}`).get();
 }
 
 export async function create(payload) {
@@ -13,9 +16,14 @@ export async function create(payload) {
   return await firebase.firestore().collection("productos").add(payload);
 }
 
-export async function upLoadFile (file){
-  const storageRef = ref (storage, v4())
-  await uploadBytes(storageRef, file)
-  const url = await getDownloadURL(storageRef)
-  return url
+export async function deleteProducto(id) {
+  //Ejemplo de DELETE -> Eliminar
+  return await firebase.firestore().doc(`productos/${id}`).delete();
 }
+
+export async function update(id, data) {
+  //Ejemplo de PUT -> Actualizar
+  return await firebase.firestore().doc(`productos/${id}`).set(data);
+}
+
+

@@ -7,6 +7,8 @@ import { useState } from 'react';
 import AuthProvider from './Context/AuthContex';
 import NavBar from './Components/NavBar';
 import AltaDeProducto from './Pages/AltaDeProducto';
+import Detalle from './Pages/Detalle';
+import ProductosModificarYBorrar from './Pages/ProductosModificarYBorrar';
 
 function App() {
   const [userLogued, setUserLogued]= useState('')
@@ -22,6 +24,8 @@ function App() {
         <Route path ='/registro' element = {<Registro/> }/>
         <Route path ='/login' element = {<Login setUserLogued = {setUserLogued}/> }/>
         <Route path ='/alta-producto' element = {<AltaDeProducto/> }/>
+        <Route path ='/producto/detalle/:id' element = {<Detalle/> }/>
+        <Route path ='/producto/eliminar/:id' element = {<ProductosModificarYBorrar/> }/>
       </Routes>
       </AuthProvider>
     </Router>
