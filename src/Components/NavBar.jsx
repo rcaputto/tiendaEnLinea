@@ -37,9 +37,8 @@ function NavBar({usuarioLogueado}) {
             {adminLogin &&
               <>
               <NavDropdown title = {usuarioLogueado} id="basic-nav-dropdown" style={{color:'white'}}>
-              <NavDropdown.Item ><Link to='alta-producto'>Carga de productos</Link> </NavDropdown.Item>
-               <NavDropdown.Item ><Link to='alta-producto'>Carga de productos</Link> </NavDropdown.Item>
-              <NavDropdown.Item > Baja de productos  </NavDropdown.Item>
+              <NavDropdown.Item ><Link to='producto/alta-producto'>Carga de productos</Link> </NavDropdown.Item>
+              
               <NavDropdown.Item ><Nav.Link onClick={handleAdminLogout} style={{color:'black'}}> Salir </Nav.Link></NavDropdown.Item>
               </NavDropdown>
               </>}
