@@ -1,35 +1,36 @@
-import React, {useState} from 'react'
+import React, { useState } from 'react'
 
-export  const AuthContext = React.createContext()
+export const AuthContext = React.createContext()
 
-const AuthProvider = ({children}) =>{
+const AuthProvider = ({ children }) => {
     const [login, setLogin] = useState(false);
-    const [adminLogin, setAdminLogin] = useState (false);
-    
+    const [adminLogin, setAdminLogin] = useState(false);
+    const [cart, setCart] = useState([])
 
-    const handleAdminLogin = () =>{
 
-        setAdminLogin (true)
+    const handleAdminLogin = () => {
+
+        setAdminLogin(true)
     }
-    const handleAdminLogout = () =>{
+    const handleAdminLogout = () => {
 
-        setAdminLogin (false)
+        setAdminLogin(false)
     }
 
     const handleLogin = () => {
-        setLogin (true)
+        setLogin(true)
     }
 
-    const handleLogout =  () => {
+    const handleLogout = () => {
         setLogin(false)
-        
-        
+
+
     }
 
     return (
         <AuthContext.Provider
-            value = {{login, handleLogin, handleLogout, adminLogin, handleAdminLogin, handleAdminLogout, alert}}    
-            >
+            value={{ login, handleLogin, handleLogout, adminLogin, handleAdminLogin, handleAdminLogout, alert, cart, setCart }}
+        >
             {children}
         </AuthContext.Provider>
     )

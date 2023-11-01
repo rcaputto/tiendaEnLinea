@@ -8,14 +8,16 @@ import AuthProvider, { AuthContext } from './Context/AuthContex';
 import NavBar from './Components/NavBar';
 import AltaDeProducto from './Pages/AltaDeProducto';
 import Detalle from './Pages/Detalle';
-import Carrito from './Components/Carrito';
+import Carrito from './Pages/Carrito';
 import ProductosModificarYBorrar from './Pages/ProductosModificarYBorrar';
 
 
 function App() {
-  const [userLogued, setUserLogued]= useState('')
+  const [userLogued, setUserLogued] = useState('')
+
   const usuarioLogueado = userLogued.name
-  console.log ('USUARIOLOGUEADO', usuarioLogueado)
+  console.log('USUARIOLOGUEADO', usuarioLogueado)
+
 
   return (
     <Router>
@@ -24,13 +26,14 @@ function App() {
           {
             ({ login, adminLogin }) => (
               <>
-                <NavBar usuarioLogueado = {usuarioLogueado} />
+                <NavBar usuarioLogueado={usuarioLogueado} />
                 <Routes>
                   <Route path='/' element={<Home />} />
                   <Route path='/registro' element={<Registro />} />
-                  <Route path='/login' element={<Login setUserLogued ={setUserLogued} />} />
+                  <Route path='/login' element={<Login setUserLogued={setUserLogued} />} />
                   <Route path='/producto/detalle/:id' element={<Detalle />} />
                   <Route path='/detalle-compra' element={<Carrito />} />
+
                   {adminLogin &&
                     <>
                       <Route path='/producto/alta-producto' element={<AltaDeProducto />} />

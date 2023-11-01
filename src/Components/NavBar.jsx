@@ -15,6 +15,7 @@ function NavBar({usuarioLogueado}) {
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="me-auto">
             <Nav.Link><Link to ='/'>Home</Link></Nav.Link>
+            <Nav.Link><Link to ='/detalle-compra'>Carrito</Link></Nav.Link>
             
             {!login && 
             <>
