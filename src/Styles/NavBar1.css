@@ -1,0 +1,17 @@
+.registroLogin{
+    text-decoration: none;
+    color: var(--color-fondo);
+    
+}
+.navBar1{
+    background-color: white;
+    height: 20vh;
+    width: 100%;
+}
+.buscar{
+    margin-left: 35%;
+}
+.logo{
+    width: 25%;
+    height: 20vh;
+}

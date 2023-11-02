@@ -45,7 +45,7 @@ export default function Registro (){
 
     return (
         <>
-        <NavBar/>
+        
             <Form onSubmit = {handleSubmit (onSubmit)}>
                 <Input type = 'text' label = 'Nombre' placeholder = 'Ingrese su nombre' register ={{...register ('nombre', {required: true})}} errors = {errors} name = 'nombre'/>
                 <Input type = 'text' label = 'Apellido' placeholder = 'Ingrese su apellido' register ={{...register ('apellido', {required: true})}} errors={errors} name = 'apellido'/>

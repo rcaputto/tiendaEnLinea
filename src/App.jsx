@@ -6,6 +6,7 @@ import Login from './Pages/Login';
 import { useState } from 'react';
 import AuthProvider, { AuthContext } from './Context/AuthContex';
 import NavBar from './Components/NavBar';
+import NavBar1 from './Components/NavBar1';
 import AltaDeProducto from './Pages/AltaDeProducto';
 import Detalle from './Pages/Detalle';
 import Carrito from './Pages/Carrito';
@@ -26,6 +27,7 @@ function App() {
           {
             ({ login, adminLogin }) => (
               <>
+              <NavBar1 usuarioLogueado={usuarioLogueado} />
                 <NavBar usuarioLogueado={usuarioLogueado} />
                 <Routes>
                   <Route path='/' element={<Home login = {login} />} />

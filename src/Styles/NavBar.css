@@ -1,0 +1,13 @@
+.links{
+    text-decoration: none;
+    color: var(--color-texto);
+    font-size: 18px;
+}
+.navBar{
+    background-color: var(--color-fondo);
+    
+}
+.linkCopy{
+    margin:0 6px;
+    
+}
