@@ -28,10 +28,10 @@ function App() {
               <>
                 <NavBar usuarioLogueado={usuarioLogueado} />
                 <Routes>
-                  <Route path='/' element={<Home />} />
+                  <Route path='/' element={<Home login = {login} />} />
                   <Route path='/registro' element={<Registro />} />
                   <Route path='/login' element={<Login setUserLogued={setUserLogued} />} />
-                  <Route path='/producto/detalle/:id' element={<Detalle />} />
+                  <Route path='/producto/detalle/:id' element={<Detalle login = {login} />} />
                   <Route path='/detalle-compra' element={<Carrito />} />
 
                   {adminLogin &&

@@ -1,19 +1,35 @@
 import Button from 'react-bootstrap/Button';
 import Card from 'react-bootstrap/Card';
 import { Link } from 'react-router-dom';
-import { useContext } from "react";
-import AuthProvider, { AuthContext } from '../Context/AuthContex';
+import { useContext, useState } from "react";
+import { AuthContext } from '../Context/AuthContex';
+import AlertNavigation from './AlertNavigation';
 
 
 export default function Producto({ id, producto, nombre, descripcion, precio, categoria, stock, imagenURL, usuarioLogueado, button }) {
 
   const product = [nombre, precio, imagenURL];
+  const [alert, setAlert ]= useState({variant:'', text:'', duration: 0, link:''})
 
 
   const { login, handleLogout, adminLogin, handleAdminLogout, cart, setCart } = useContext(AuthContext);
 
-  const handleCarrito = (product) => {
+  const handleCarrito = () => {
+    if(login){
     setCart([...cart, product])
+    setAlert({
+      duration: 3000,
+      variant:'success', 
+      text:'Producto agregado al carrito',
+})
+    }else{
+      setAlert({
+                duration: 3000,
+                variant:'warning', 
+                text:'Debe esta logueado',
+                link:'/login'
+    })
+    }
   }
   return (
     <>
@@ -26,7 +42,7 @@ export default function Producto({ id, producto, nombre, descripcion, precio, ca
           </Card.Text>
           <Button variant="primary" as={Link} to={`/producto/detalle/${id}`}>Ver detalle</Button>
           {button && (
-            <Button as={Link} to='detalle-compra' variant="primary" onClick={() => handleCarrito(product)}>
+            <Button variant="primary" onClick={handleCarrito}>
               {button}
             </Button>
           )}
@@ -40,6 +56,9 @@ export default function Producto({ id, producto, nombre, descripcion, precio, ca
             </Button>
           }
         </Card.Body>
+        <AlertNavigation
+                      {...alert}
+                  />
       </Card>
     </>
   )
